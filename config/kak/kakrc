@@ -1,9 +1,12 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
-plug "jdugan6240/powerline.kak" config %{
-    powerline-start
-}
+# plug "jdugan6240/powerline.kak" config %{
+#     powerline-start
+# }
 
+plug "alexherbo2/auto-pairs.kak" config %{
+    auto-pairs-enable
+}
 
 plug "andreyorst/smarttab.kak" defer smarttab %{
     # when `backspace' is pressed, 4 spaces are deleted at once
@@ -17,15 +20,13 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
     hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
-plug "andreyorst/kaktree" defer kaktree %{
-    set-option global kaktree_double_click_duration '0.5'
-    set-option global kaktree_indentation 1
-    set-option global kaktree_dir_icon_open  '▾ 🗁 '
-    set-option global kaktree_dir_icon_close '▸ 🗀 '
-    set-option global kaktree_file_icon      '⠀⠀🖺'
-} config %{...}
-
-plug "alexherbo2/auto-pairs.kak"
+# plug "andreyorst/kaktree" defer kaktree %{
+#     set-option global kaktree_double_click_duration '0.5'
+#     set-option global kaktree_indentation 1
+#     set-option global kaktree_dir_icon_open  '▾ 🗁 '
+#     set-option global kaktree_dir_icon_close '▸ 🗀 '
+#     set-option global kaktree_file_icon      '⠀⠀🖺'
+# } config %{...}
 
 plug "andreyorst/fzf.kak" defer fzf %{
     set-option global fzf_file_command 'fd'
@@ -33,7 +34,7 @@ plug "andreyorst/fzf.kak" defer fzf %{
 }
 map global normal <c-r> ': fzf-mode<ret>'
 
-add-highlighter global/ number-lines -relative
+# add-highlighter global/ number-lines -relative
 add-highlighter global/ wrap
 add-highlighter global/ show-matching
 
@@ -43,3 +44,5 @@ set-option global jumpclient jump
 set-option global toolsclient tools
 # Set docsclient
 set-option global docsclient docs
+set global tabstop 4
+set global ui_options ncurses_assistant=off
