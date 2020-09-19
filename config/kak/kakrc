@@ -1,12 +1,22 @@
+############################################################
+# Plugins
+############################################################
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
-
-# plug "jdugan6240/powerline.kak" config %{
-#     powerline-start
-# }
-
-plug "alexherbo2/auto-pairs.kak" config %{
-    auto-pairs-enable
+plug "jdugan6240/powerline.kak" defer powerline %{
+    set-option global powerline_format 'git bufname filetype mode_info line_column position'
+    powerline-toggle-module line_column off
+    powerline-toggle-module git off
+    powerline-toggle-module session off
+    powerline-separator global none
+    set-option global powerline_format 'mode_info position bufname filetype'
+    powerline-theme solarized-dark 
+} config %{
+    powerline-start
 }
+
+# plug "alexherbo2/auto-pairs.kak" config %{
+#     auto-pairs-enable
+# }
 
 plug "andreyorst/smarttab.kak" defer smarttab %{
     # when `backspace' is pressed, 4 spaces are deleted at once
@@ -20,29 +30,40 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
     hook global WinSetOption filetype=(c|cpp) smarttab
 }
 
-# plug "andreyorst/kaktree" defer kaktree %{
-#     set-option global kaktree_double_click_duration '0.5'
-#     set-option global kaktree_indentation 1
-#     set-option global kaktree_dir_icon_open  '▾ 🗁 '
-#     set-option global kaktree_dir_icon_close '▸ 🗀 '
-#     set-option global kaktree_file_icon      '⠀⠀🖺'
-# } config %{...}
+plug "andreyorst/kaktree" defer kaktree %{
+    set-option global kaktree_double_click_duration '0.5'
+    set-option global kaktree_indentation 1
+    set-option global kaktree_dir_icon_open  '+ '
+    set-option global kaktree_dir_icon_close '- '
+    set-option global kaktree_file_icon      ''
+}
 
 plug "andreyorst/fzf.kak" defer fzf %{
     set-option global fzf_file_command 'fd'
     set-option global fzf_highlight_command 'bat'
 }
-map global normal <c-r> ': fzf-mode<ret>'
 
-# add-highlighter global/ number-lines -relative
+
+
+########################################################
+# Editor Options
+########################################################
 add-highlighter global/ wrap
 add-highlighter global/ show-matching
+add-highlighter global/ number-lines -relative -separator |
 
-# Set jumpclient
 set-option global jumpclient jump
-# Set toolsclient
 set-option global toolsclient tools
-# Set docsclient
 set-option global docsclient docs
+set-option global startup_info_version 99999999
+
 set global tabstop 4
 set global ui_options ncurses_assistant=off
+set -add global ui_options 'ncurses_set_title=false'
+
+
+
+####################################################
+# Key bindings
+####################################################
+map global normal <c-r> ': fzf-mode<ret>'
