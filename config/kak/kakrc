@@ -1,52 +1,5 @@
-############################################################
-# Plugins
-############################################################
-source "%val{config}/plugins/plug.kak/rc/plug.kak"
-plug "jdugan6240/powerline.kak" defer powerline %{
-    set-option global powerline_format 'git bufname filetype mode_info line_column position'
-    powerline-toggle-module line_column off
-    powerline-toggle-module git off
-    powerline-toggle-module session off
-    powerline-separator global none
-    set-option global powerline_format 'mode_info position bufname filetype'
-    powerline-theme solarized-dark 
-} config %{
-    powerline-start
-}
-
-# plug "alexherbo2/auto-pairs.kak" config %{
-#     auto-pairs-enable
-# }
-
-plug "andreyorst/smarttab.kak" defer smarttab %{
-    # when `backspace' is pressed, 4 spaces are deleted at once
-    set-option global softtabstop 4
-} config %{
-    # these languages will use `expandtab' behavior
-    hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|sh|perl) expandtab
-    # these languages will use `noexpandtab' behavior
-    hook global WinSetOption filetype=(makefile|gas) noexpandtab
-    # these languages will use `smarttab' behavior
-    hook global WinSetOption filetype=(c|cpp) smarttab
-}
-
-plug "andreyorst/kaktree" defer kaktree %{
-    set-option global kaktree_double_click_duration '0.5'
-    set-option global kaktree_indentation 1
-    set-option global kaktree_dir_icon_open  '+ '
-    set-option global kaktree_dir_icon_close '- '
-    set-option global kaktree_file_icon      ''
-}
-
-plug "andreyorst/fzf.kak" defer fzf %{
-    set-option global fzf_file_command 'fd'
-    set-option global fzf_highlight_command 'bat'
-}
-
-
-
 ########################################################
-# Editor Options
+# Editor Configs
 ########################################################
 add-highlighter global/ wrap
 add-highlighter global/ show-matching
@@ -59,11 +12,28 @@ set-option global startup_info_version 99999999
 
 set global tabstop 4
 set global ui_options ncurses_assistant=off
-set -add global ui_options 'ncurses_set_title=false'
+set -add global ui_options ncurses_set_title=false
 
 
+#####################################################
+# Commands
+#####################################################
+define-command -hidden -params 2 exec-in-terminal %{ terminal sh -c "printf ""evaluate-commands -client %val{client} %arg{1} %%s\n"" ""$(%arg{2})"" | kak -p %val{session}" }
+define-command -params .. test-exec-in-terminal %{ terminal sh -c "printf ""evaluate-commands -client %val{client} %arg{1} %%s\n"" $(%arg{2}) | cat" }
+
+
+declare-option str fzf_command	'fzf --cycle --ansi --preview "bat --number --color=always {1}"'
+define-command -params 3 fzf %{ exec-in-terminal "%arg{1}" "%arg{2} | %opt{fzf_command} | %arg{3}" }
+
+declare-option str find_command 'fd --hidden --ignore-case --follow --color always'
+define-command -params 2.. -file-completion -override find %{ fzf "edit" "%opt{find_command} %arg{@}" "cat" }
+
+declare-option str grep_command 'rg --follow --hidden --smart-case --vimgrep --trim --color=always'
+define-command -params 1.. -override grep %{ fzf "edit" "%opt{grep_command} %arg{@} | cut --delimiter "":"" --output-delimiter="" "" --fields=-3" "cat" }
 
 ####################################################
 # Key bindings
 ####################################################
-map global normal <c-r> ': fzf-mode<ret>'
+map -docstring 'next buffer' global goto n ':buffer-next'
+map -docstring 'previous buffer' global goto p ':buffer-previous'
+
