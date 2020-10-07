@@ -1,11 +1,13 @@
 #include "./purify"
 
-xterm*faceName: Hack
-xterm*faceSize: 10
-xterm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\\
+XTerm*faceName: InputMono
+XTerm*faceSize: 10
+XTerm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\\
                                     Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
 
-xterm*VT100.scrollBar: false
+XTerm*VT100.scrollBar: false
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
 
 !-- Xft settings -- !
 Xft.dpi:        96
