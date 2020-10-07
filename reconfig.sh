@@ -23,6 +23,14 @@ for config in $PWD/config/*; do
     fi
 done
 
+mkdir -p $HOME/.emacs.d
+for config in $PWD/emacs.d/*; do
+    if [ -e $HOME/.emacs.d/$(basename $config) ]; then
+        echo "Config $(basename $config) already exists. Skipping..."
+    else
+        ln -sv $config $HOME/.emacs.d/$(basename $config)
+    fi
+done
 
 # ##############################
 # Xresources
@@ -30,3 +38,4 @@ done
 cpp ./xresources/main -o $HOME/.Xdefaults
 cpp ./xresources/main -o $HOME/.Xresources
 xrdb $HOME/.Xresources
+
