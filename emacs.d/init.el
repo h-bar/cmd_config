@@ -11,8 +11,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Install Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -46,6 +44,11 @@
 
 ;; Projectile
 (setq projectile-completion-system 'ivy)
+(setq projectile-dynamic-mode-line t)
+(setq projectile-indexing-method 'alien)
+(setq projectile-sort-order 'recently-active)
+(setq projectile-enable-caching t)
+;; (setq projectile-mode-line-function '(lambda () (format " Proj[%s]" (projectile-project-name))))
 
 ;; Modeline
 (setq doom-modeline-window-width-limit fill-column)
@@ -60,21 +63,8 @@
 (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Keymaps
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key "\C-s" 'swiper)
-(global-set-key "\M-;" 'evilnc-comment-or-uncomment-lines)
+(load (concat user-emacs-directory "comphy_fw"))
 
-(global-set-key (kbd "M-p g") 'counsel-projectile-rg)
-(global-set-key (kbd "M-p t") 'projectile-find-tag)
-(global-set-key (kbd "M-p f") 'counsel-projectile-find-file)
-(global-set-key (kbd "M-p r") 'xref-find-references)
-(global-set-key (kbd "M-p d") 'xref-find-definitions-other-window)
-
-
-(global-set-key [mouse-4] 'scroll-down-line)
-(global-set-key [mouse-5] 'scroll-up-line )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -105,3 +95,20 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq scroll-conservatively most-positive-fixnum)
 (setq backup-directory-alist nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Keymaps
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key "\C-s" 'swiper)
+(global-set-key "\M-;" 'evilnc-comment-or-uncomment-lines)
+
+(global-set-key (kbd "M-p g") 'counsel-projectile-rg)
+(global-set-key (kbd "M-p t") 'projectile-find-tag)
+(global-set-key (kbd "M-p f") 'counsel-projectile-find-file)
+(global-set-key (kbd "M-p r") 'xref-find-references)
+(global-set-key (kbd "M-p d") 'xref-find-definitions-other-window)
+(global-set-key (kbd "M-p s") 'counsel-projectile-switch-project)
+
+(global-set-key [mouse-4] 'scroll-down-line)
+(global-set-key [mouse-5] 'scroll-up-line)
+
