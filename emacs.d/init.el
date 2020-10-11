@@ -53,9 +53,8 @@
 ;; Modeline
 (setq doom-modeline-window-width-limit fill-column)
 (setq doom-modeline-project-detection 'projectile)
-(setq doom-modeline-buffer-file-name-style 'truncate-except-project)
+(setq doom-modeline-buffer-file-name-style 'file-name)
 (setq doom-modeline-indent-info t)
-(setq find-file-visit-truename t)
 
 ;; Ivy-xref
 (when (>= emacs-major-version 27)
@@ -89,6 +88,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (auto-save-visited-mode t)
+(display-time-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; EMACS Configuration
@@ -111,4 +111,3 @@
 
 (global-set-key [mouse-4] 'scroll-down-line)
 (global-set-key [mouse-5] 'scroll-up-line)
-
