@@ -6,8 +6,6 @@ XTerm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPB
                                     Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
 
 XTerm*VT100.scrollBar: false
-XTerm*metaSendsEscape: true
-XTerm*eightBitInput: false
 
 !-- Xft settings -- !
 Xft.dpi:        96
