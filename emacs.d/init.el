@@ -18,6 +18,7 @@
 (straight-use-package 'smartparens)
 (straight-use-package 'ripgrep)
 (straight-use-package 'evil-nerd-commenter)
+(straight-use-package 'dtrt-indent)
 
 (straight-use-package 'all-the-icons)
 (straight-use-package 'doom-modeline)
@@ -77,6 +78,7 @@
 (global-company-mode t)
 (ivy-rich-mode t)
 (doom-modeline-mode t)
+(projectile-mode t)
 
 ;; Builtin Modes
 (global-cwarn-mode t)
@@ -89,12 +91,14 @@
 (tool-bar-mode -1)
 (auto-save-visited-mode t)
 (display-time-mode t)
+(auto-save-mode nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; EMACS Configuration
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq scroll-conservatively most-positive-fixnum)
-(setq backup-directory-alist nil)
+(setq make-backup-files nil)
+(setq ring-bell-function 'ignore)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keymaps
@@ -106,8 +110,8 @@
 (global-set-key (kbd "M-p t") 'projectile-find-tag)
 (global-set-key (kbd "M-p f") 'counsel-projectile-find-file)
 (global-set-key (kbd "M-p r") 'xref-find-references)
-(global-set-key (kbd "M-p d") 'xref-find-definitions-other-window)
-(global-set-key (kbd "M-p s") 'counsel-projectile-switch-project)
+(global-set-key (kbd "M-p d") 'xref-find-definitions)
+(global-set-key (kbd "M-p p") 'counsel-projectile-switch-project)
 
 (global-set-key [mouse-4] 'scroll-down-line)
 (global-set-key [mouse-5] 'scroll-up-line)
