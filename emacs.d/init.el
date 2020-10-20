@@ -70,17 +70,17 @@
   :config
   (global-company-mode t))
 
-(use-package lsp-ui
-  :config
-  (lsp-ui-peek-enable t)
-  (lsp-ui-mode t)
-  (lsp-ui-sideline-mode t))
+;; (use-package lsp-ui
+;;   :config
+;;   (lsp-ui-peek-enable t)
+;;   (lsp-ui-mode t)
+;;   (lsp-ui-sideline-mode t))
 
-(use-package lsp-mode
-  :config
-  (lsp-completion-mode t)
-  (lsp-diagnostics-mode t)
-  (lsp-diagnostics-modeline-mode t))
+;; (use-package lsp-mode
+;;   :config
+;;   (lsp-completion-mode t)
+;;   (lsp-diagnostics-mode t)
+;;   (lsp-diagnostics-modeline-mode t))
 
 
 
@@ -99,9 +99,9 @@
 
 (use-package counsel-projectile)
 
-(use-package company-lsp
-  :config
-  (push 'conpany-lsp company-backends))
+;; (use-package company-lsp
+;;   :config
+;;   (push 'conpany-lsp company-backends))
 
 ;; (use-package company-box
 ;;   :hook (company-mode . company-box-mode))
