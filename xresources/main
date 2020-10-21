@@ -1,7 +1,7 @@
 #include "./nord"
 
-XTerm*faceName: InputMono
-XTerm*faceSize: 10
+XTerm*faceName: Input
+XTerm*faceSize: 12
 XTerm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\\
                                     Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
 
