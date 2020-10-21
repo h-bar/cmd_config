@@ -12,6 +12,26 @@
   (load bootstrap-file nil 'nomessage))
 
 
+(global-cwarn-mode t)
+(global-prettify-symbols-mode t)
+(global-visual-line-mode t)
+(global-display-line-numbers-mode t)
+(xterm-mouse-mode t)
+(which-function-mode t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(auto-save-visited-mode t)
+(display-time-mode t)
+(auto-save-mode nil)
+(global-hl-line-mode t)
+
+(setq scroll-conservatively most-positive-fixnum)
+(setq make-backup-files nil)
+(setq ring-bell-function 'ignore)
+(setq default-tab-width 4)
+(setq tab-width 4)
+
+
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
@@ -22,6 +42,12 @@
 ;; (use-package zenburn-theme
 ;;   :config
 ;;   (load-theme 'zenburn t))
+
+(use-package smart-mode-line
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (setq sml/theme 'respectful)
+  (sml/setup))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Install Packages
@@ -39,14 +65,6 @@
 (use-package evil-nerd-commenter
   :config
   (evilnc-default-hotkeys t))
-
-(use-package doom-modeline
-  :init (doom-modeline-mode t)
-  :config
-  (setq doom-modeline-window-width-limit fill-column)
-  (setq doom-modeline-project-detection 'projectile)
-  (setq doom-modeline-buffer-file-name-style 'file-name)
-  (setq doom-modeline-indent-info t))
 
 (use-package ivy
   :config
@@ -68,7 +86,7 @@
   (setq projectile-indexing-method 'alien)
   (setq projectile-sort-order 'recently-active)
   (setq projectile-enable-caching t)
-  (setq projectile-mode-line-function '(lambda () (format " Proj[%s]" (projectile-project-name))))
+  (setq projectile-mode-line-function '(lambda () (format " [%s]" (projectile-project-name))))
   (projectile-mode t))
 
 (use-package company
@@ -99,29 +117,16 @@
 
 (load (concat user-emacs-directory "comphy_fw"))
 
-(global-cwarn-mode t)
-(global-prettify-symbols-mode t)
-(global-visual-line-mode t)
-(global-display-line-numbers-mode t)
-(xterm-mouse-mode t)
-(which-function-mode t)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(auto-save-visited-mode t)
-(display-time-mode t)
-(auto-save-mode nil)
-(global-hl-line-mode t)
-
-(setq scroll-conservatively most-positive-fixnum)
-(setq make-backup-files nil)
-(setq ring-bell-function 'ignore)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keymaps
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key "\C-s" 'swiper)
-;; (global-set-key "\C-x b" 'split-window-horizontally)
-;; (global-set-key "\C-x \\" 'split-window-vertically')
+(global-set-key (kbd "C-x -") 'split-window-below)
+(global-set-key (kbd "C-x \\") 'split-window-right)
+
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
+(global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
+
 
 (global-set-key (kbd "M-p g") 'counsel-projectile-rg)
 (global-set-key (kbd "M-p t") 'projectile-find-tag)
@@ -132,3 +137,16 @@
 
 (global-set-key [mouse-4] 'scroll-down-line)
 (global-set-key [mouse-5] 'scroll-up-line)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
