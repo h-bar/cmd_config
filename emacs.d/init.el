@@ -23,9 +23,9 @@
   :config
   (smartparens-global-mode t))
 
-;; (use-package solarized-theme
-;;   :config
-;;   (load-theme 'solarized-dark t))
+(use-package zenburn-theme
+  :config
+  (load-theme 'zenburn t))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -70,19 +70,6 @@
   :config
   (global-company-mode t))
 
-;; (use-package lsp-ui
-;;   :config
-;;   (lsp-ui-peek-enable t)
-;;   (lsp-ui-mode t)
-;;   (lsp-ui-sideline-mode t))
-
-;; (use-package lsp-mode
-;;   :config
-;;   (lsp-completion-mode t)
-;;   (lsp-diagnostics-mode t)
-;;   (lsp-diagnostics-modeline-mode t))
-
-
 
 (use-package ivy-hydra)
 
@@ -99,15 +86,11 @@
 
 (use-package counsel-projectile)
 
-;; (use-package company-lsp
-;;   :config
-;;   (push 'conpany-lsp company-backends))
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
-;; (use-package company-box
-;;   :hook (company-mode . company-box-mode))
-
-;; (use-package flycheck-color-mode-line
-;;   :hook (flycheck-mode . flycheck-color-mode-line-mode))
+(use-package flycheck-color-mode-line
+  :hook (flycheck-mode . flycheck-color-mode-line-mode))
 
 (load (concat user-emacs-directory "comphy_fw"))
 
