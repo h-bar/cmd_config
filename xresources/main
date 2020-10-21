@@ -1,4 +1,4 @@
-#include "./purify"
+#include "./nord"
 
 XTerm*faceName: InputMono
 XTerm*faceSize: 10

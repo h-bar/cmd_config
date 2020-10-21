@@ -14,6 +14,15 @@
 
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
+
+(use-package nord-theme
+  :config
+  (load-theme 'nord t))
+
+;; (use-package zenburn-theme
+;;   :config
+;;   (load-theme 'zenburn t))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Install Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -22,10 +31,6 @@
   (require 'smartparens-config)
   :config
   (smartparens-global-mode t))
-
-(use-package zenburn-theme
-  :config
-  (load-theme 'zenburn t))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -53,8 +58,8 @@
 (use-package swiper)
 (use-package hydra)
 
-(use-package flycheck
-  :hook (prog-mode . flycheck-mode))
+;; (use-package flycheck
+;;   :hook (prog-mode . flycheck-mode))
 
 (use-package projectile
   :config
